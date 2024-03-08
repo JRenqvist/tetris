@@ -16,21 +16,21 @@ public class Ui
     public Ui(Board board) {
 	this.board = board;
 	// Add exit button
-	exitButton = new JButton("Avsluta");
+	exitButton = new JButton("Exit");
 	exitButton.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(final ActionEvent e) {
 		board.setIsPaused(true);
 
 
-		int choice = JOptionPane.showConfirmDialog(null, "Vill du avsluta?",
-							   "Avsluta", JOptionPane.YES_NO_OPTION);
+		int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
+							   "Exit", JOptionPane.YES_NO_OPTION);
 
 		if (choice == JOptionPane.YES_OPTION) {
 
 		    // Ask for name if points are in top 3
 		    if (board.getPoints() > board.getHighscoreList().getLowestScore()) {
-			String name = JOptionPane.showInputDialog("Du fick ett nytt highscore!\nAnge ditt namn");
+			String name = JOptionPane.showInputDialog("You got a new highscore!\nEnter your name");
 			if (name.isEmpty()) {
 			    name = "No Name";
 			}
@@ -45,16 +45,16 @@ public class Ui
 	exitButton.setPreferredSize(new Dimension(90, 25));
 
 	// Add pause button
-	pauseButton = new JButton("Pausa");
+	pauseButton = new JButton("Pause");
 	pauseButton.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(final ActionEvent e) {
 		if (board.getIsPaused()) {
 		    board.setIsPaused(false);
-		    pauseButton.setText("Pausa");
+		    pauseButton.setText("Pause");
 		} else {
 		    board.setIsPaused(true);
-		    pauseButton.setText("Börja");
+		    pauseButton.setText("Start");
 		}
 	    }
 	});
@@ -63,7 +63,7 @@ public class Ui
 	// Add points display as JTextArea
 	pointsText = new JTextArea();
 	pointsText.setEditable(false);
-	pointsText.setText("Poäng: " + board.getPoints());
+	pointsText.setText("Points: " + board.getPoints());
 	pointsText.setFont(new Font("Monospaced", Font.PLAIN, 15));
 
 
@@ -86,6 +86,6 @@ public class Ui
     }
 
     public void updatePointsText() {
-	pointsText.setText("Poäng: " + board.getPoints());
+	pointsText.setText("Points: " + board.getPoints());
     }
 }
